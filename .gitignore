@@ -28,6 +28,9 @@ build/
 Thumbs.db
 desktop.ini
 
+# ─── Claude Code (herramienta interna, no va al repo público) ────────────────
+CLAUDE.md
+
 # ─── Credenciales ─────────────────────────────────────────────────────────────
 # config.h con credenciales reales NO se commitea.
 # Usar config.h.example con valores placeholder.
