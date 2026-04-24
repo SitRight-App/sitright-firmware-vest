@@ -1,0 +1,35 @@
+# ─── PlatformIO ───────────────────────────────────────────────────────────────
+.pio/
+.pioenvs/
+.piolibdeps/
+.clangd/
+.ccls-cache/
+
+# ─── Arduino IDE ──────────────────────────────────────────────────────────────
+build/
+*.elf
+*.hex
+*.bin
+*.map
+
+# ─── Wokwi ────────────────────────────────────────────────────────────────────
+# diagram.json y libraries.txt SÍ se versionan (son parte del proyecto)
+# No hay archivos de salida de Wokwi que deban ignorarse
+
+# ─── Editores ─────────────────────────────────────────────────────────────────
+.vscode/
+*.code-workspace
+.idea/
+*.suo
+*.user
+
+# ─── Sistema operativo ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Credenciales ─────────────────────────────────────────────────────────────
+# config.h con credenciales reales NO se commitea.
+# Usar config.h.example con valores placeholder.
+config_secrets.h
+secrets.h
