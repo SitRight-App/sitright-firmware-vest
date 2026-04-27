@@ -1,0 +1,4 @@
+# Wokwi Library Manager
+Adafruit MPU6050
+Adafruit Unified Sensor
+ArduinoJson

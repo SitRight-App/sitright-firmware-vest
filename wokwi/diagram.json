@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "author": "Christopher Lecca, Mariano Ames",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 80,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "mpu_cervical",
+      "top": 0,
+      "left": 300,
+      "attrs": { "label": "Cervical" }
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "mpu_dorsal",
+      "top": 130,
+      "left": 300,
+      "attrs": { "label": "Dorsal" }
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "mpu_lumbar",
+      "top": 260,
+      "left": 300,
+      "attrs": { "label": "Lumbar" }
+    }
+  ],
+  "connections": [
+    ["esp:3V3",   "mpu_cervical:VCC", "red",    []],
+    ["esp:GND.1", "mpu_cervical:GND", "black",  []],
+    ["esp:D21",   "mpu_cervical:SDA", "blue",   []],
+    ["esp:D22",   "mpu_cervical:SCL", "yellow", []],
+    ["esp:GND.1", "mpu_cervical:AD0", "black",  []],
+
+    ["esp:3V3",   "mpu_dorsal:VCC",  "red",    []],
+    ["esp:GND.1", "mpu_dorsal:GND",  "black",  []],
+    ["esp:D21",   "mpu_dorsal:SDA",  "blue",   []],
+    ["esp:D22",   "mpu_dorsal:SCL",  "yellow", []],
+    ["esp:3V3",   "mpu_dorsal:AD0",  "red",    []],
+
+    ["esp:3V3",   "mpu_lumbar:VCC",  "red",    []],
+    ["esp:GND.1", "mpu_lumbar:GND",  "black",  []],
+    ["esp:D16",   "mpu_lumbar:SDA",  "blue",   []],
+    ["esp:D17",   "mpu_lumbar:SCL",  "yellow", []],
+    ["esp:GND.1", "mpu_lumbar:AD0",  "black",  []]
+  ]
+}
