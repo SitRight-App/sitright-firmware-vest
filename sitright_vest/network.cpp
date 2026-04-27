@@ -44,6 +44,8 @@ bool sendReading(const VestReadings& r, int batteryPercent) {
   lumbar.add(r.lumbar.ay);
   lumbar.add(r.lumbar.az);
 
+  doc["battery_percent"] = batteryPercent;
+
   String payload;
   serializeJson(doc, payload);
   Serial.printf("[NET] Enviando: %s\n", payload.c_str());
