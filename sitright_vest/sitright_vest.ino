@@ -7,6 +7,7 @@ static unsigned long lastSendMs = 0;
 
 void setup() {
   Serial.begin(115200);
+  delay(1000);
   Serial.println("\n[SITRIGHT] Iniciando chaleco SitRight...");
 
   initBattery();
