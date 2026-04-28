@@ -9,7 +9,7 @@ void initBattery() {
 int getBatteryPercent() {
   int raw = analogRead(BATTERY_PIN);
   // Pin sin conectar en Wokwi retorna valor muy bajo → devolver nivel simulado
-  if (raw < 100) return 85;
+  if (raw < 2048) return 85;  // pin flotante en Wokwi retorna valor bajo
   // Divisor resistivo 100k+100k: LiPo 4.2V→2.1V, 3.0V→1.5V en ADC
   float voltage = (raw / 4095.0f) * 3.3f * 2.0f;
   int percent = (int)((voltage - 3.0f) / (4.2f - 3.0f) * 100.0f);
