@@ -50,11 +50,17 @@ bool sendReading(const VestReadings& r, int batteryPercent) {
   serializeJson(doc, payload);
   Serial.printf("[NET] Enviando: %s\n", payload.c_str());
 
-  WiFiClientSecure client;
-  client.setInsecure();  // MVP: sin verificación de certificado
-
   HTTPClient http;
+
+#if BACKEND_USE_HTTPS
+  WiFiClientSecure secureClient;
+  secureClient.setInsecure();
+  http.begin(secureClient, BACKEND_URL);
+#else
+  WiFiClient client;
   http.begin(client, BACKEND_URL);
+#endif
+
   http.addHeader("Content-Type", "application/json");
 
   int code = http.POST(payload);

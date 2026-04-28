@@ -5,8 +5,12 @@
 #define WIFI_PASSWORD ""
 
 // ─── Backend ───────────────────────────────────────────────────────────────
-#define BACKEND_URL "https://sitright-backend-api.onrender.com/api/v1/readings"
-#define VEST_ID     "vest-wokwi-001"
+// Para Wokwi/local: usar HTTP → http://localhost:8000/api/v1/readings
+// Para producción:  usar HTTPS → https://sitright-backend-api.onrender.com/api/v1/readings
+#define BACKEND_URL      "http://localhost:8000/api/v1/readings"
+#define BACKEND_USE_HTTPS 0   // 0 = HTTP (Wokwi/local) | 1 = HTTPS (Render)
+
+#define VEST_ID "vest-wokwi-001"
 
 // ─── Timing ────────────────────────────────────────────────────────────────
 #define SEND_INTERVAL_MS 5000
