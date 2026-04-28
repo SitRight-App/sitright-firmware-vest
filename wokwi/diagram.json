@@ -4,7 +4,7 @@
   "editor": "wokwi",
   "parts": [
     {
-      "type": "wokwi-esp32-devkit-v1",
+      "type": "board-esp32-devkit-c-v4",
       "id": "esp",
       "top": 80,
       "left": 0,
@@ -36,22 +36,22 @@
     ["esp:TX", "$serialMonitor:RX", "", []],
     ["esp:RX", "$serialMonitor:TX", "", []],
 
-    ["esp:3V3",   "mpu_cervical:VCC", "red",    []],
-    ["esp:GND.1", "mpu_cervical:GND", "black",  []],
-    ["esp:D21",   "mpu_cervical:SDA", "blue",   []],
-    ["esp:D22",   "mpu_cervical:SCL", "yellow", []],
-    ["esp:GND.1", "mpu_cervical:AD0", "black",  []],
+    ["esp:3V3",  "mpu_cervical:VCC", "red",    []],
+    ["esp:GND",  "mpu_cervical:GND", "black",  []],
+    ["esp:21",   "mpu_cervical:SDA", "blue",   []],
+    ["esp:22",   "mpu_cervical:SCL", "yellow", []],
+    ["esp:GND",  "mpu_cervical:AD0", "black",  []],
 
-    ["esp:3V3",   "mpu_dorsal:VCC",  "red",    []],
-    ["esp:GND.1", "mpu_dorsal:GND",  "black",  []],
-    ["esp:D21",   "mpu_dorsal:SDA",  "blue",   []],
-    ["esp:D22",   "mpu_dorsal:SCL",  "yellow", []],
-    ["esp:3V3",   "mpu_dorsal:AD0",  "red",    []],
+    ["esp:3V3",  "mpu_dorsal:VCC",  "red",    []],
+    ["esp:GND",  "mpu_dorsal:GND",  "black",  []],
+    ["esp:21",   "mpu_dorsal:SDA",  "blue",   []],
+    ["esp:22",   "mpu_dorsal:SCL",  "yellow", []],
+    ["esp:3V3",  "mpu_dorsal:AD0",  "red",    []],
 
-    ["esp:3V3",   "mpu_lumbar:VCC",  "red",    []],
-    ["esp:GND.1", "mpu_lumbar:GND",  "black",  []],
-    ["esp:D16",   "mpu_lumbar:SDA",  "blue",   []],
-    ["esp:D17",   "mpu_lumbar:SCL",  "yellow", []],
-    ["esp:GND.1", "mpu_lumbar:AD0",  "black",  []]
+    ["esp:3V3",  "mpu_lumbar:VCC",  "red",    []],
+    ["esp:GND",  "mpu_lumbar:GND",  "black",  []],
+    ["esp:16",   "mpu_lumbar:SDA",  "blue",   []],
+    ["esp:17",   "mpu_lumbar:SCL",  "yellow", []],
+    ["esp:GND",  "mpu_lumbar:AD0",  "black",  []]
   ]
 }
