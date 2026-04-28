@@ -1,14 +1,18 @@
 #pragma once
 
 // ─── WiFi ──────────────────────────────────────────────────────────────────
+// "Wokwi-GUEST" es la WiFi virtual de Wokwi.com — da acceso real a internet.
 #define WIFI_SSID     "Wokwi-GUEST"
 #define WIFI_PASSWORD ""
 
 // ─── Backend ───────────────────────────────────────────────────────────────
-// Para Wokwi/local: usar HTTP → http://localhost:8000/api/v1/readings
-// Para producción:  usar HTTPS → https://sitright-backend-api.onrender.com/api/v1/readings
-#define BACKEND_URL      "http://localhost:8000/api/v1/readings"
-#define BACKEND_USE_HTTPS 0   // 0 = HTTP (Wokwi/local) | 1 = HTTPS (Render)
+// URL de producción (Render) — usada por Wokwi.com y el chaleco físico.
+#define BACKEND_URL      "https://sitright-backend-api.onrender.com/api/v1/readings"
+#define BACKEND_USE_HTTPS 1
+
+// Para desarrollo local con VS Code + Wokwi extension, cambiar a:
+// #define BACKEND_URL      "http://localhost:8000/api/v1/readings"
+// #define BACKEND_USE_HTTPS 0
 
 #define VEST_ID "vest-wokwi-001"
 

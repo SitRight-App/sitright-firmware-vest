@@ -1,33 +1,72 @@
 # sitright-firmware-vest
 
-Firmware del chaleco inteligente **SitRight**. ESP32 + 3× MPU6050.
-
-## Sobre el proyecto
-
-Parte de la tesis **SitRight**: aplicación web con machine learning e IoT para mejorar la ergonomía postural en trabajadores sedentarios limeños mediante chaleco inteligente.
-
-**Equipo:** Christopher Lecca, Mariano Ames (UPC — Ingeniería de Software).
+Firmware del chaleco inteligente **SitRight**. ESP32 DevKit V1 + 3× MPU6050.  
+Lee posturas cada 5 segundos y las envía al backend vía HTTPS.
 
 ## Hardware
 
-- ESP32 DevKit V1
-- 3× MPU6050 (cervical, dorsal, lumbar)
-- Batería LiPo 3.7V 1000mAh + módulo cargador TP4056
+| Componente | Función |
+|---|---|
+| ESP32 DevKit V1 | Microcontrolador WiFi |
+| MPU6050 cervical | Sensor acelerómetro (I2C bus 1, addr 0x68) |
+| MPU6050 dorsal | Sensor acelerómetro (I2C bus 1, addr 0x69) |
+| MPU6050 lumbar | Sensor acelerómetro (I2C bus 2, addr 0x68) |
+| LiPo 3.7V 1000mAh | Batería |
 
-## Qué hace
+## Simular en Wokwi.com (recomendado — sin instalaciones)
 
-1. Lee los 3 MPU6050 vía I2C (multiplexado por pin AD0).
-2. Se conecta a WiFi.
-3. Envía las 9 lecturas (X, Y, Z × 3 sensores) + timestamp al backend vía HTTP POST cada 5 segundos.
+> El backend debe estar desplegado en Render antes de simular.
 
-## Simulación
+1. Ir a **[wokwi.com](https://wokwi.com)** → New Project → **ESP32**
+2. Reemplazar `diagram.json` con el contenido de [`wokwi/diagram.json`](wokwi/diagram.json)
+3. Crear los siguientes archivos en el editor (botón `+`):
 
-El sketch corre igual en hardware real (Arduino IDE) que en el simulador Wokwi. Abre la carpeta en VS Code con la extensión Wokwi instalada y ejecuta `Wokwi: Start Simulator`.
+| Archivo | Contenido |
+|---|---|
+| `sitright_vest.ino` | `sitright_vest/sitright_vest.ino` |
+| `config.h` | `sitright_vest/config.h` |
+| `sensors.h` | `sitright_vest/sensors.h` |
+| `sensors.cpp` | `sitright_vest/sensors.cpp` |
+| `network.h` | `sitright_vest/network.h` |
+| `network.cpp` | `sitright_vest/network.cpp` |
+| `battery.h` | `sitright_vest/battery.h` |
+| `battery.cpp` | `sitright_vest/battery.cpp` |
+| `libraries.txt` | `wokwi/libraries.txt` |
+
+4. Verificar que en `config.h` la URL apunta al backend de Render:
+   ```cpp
+   #define BACKEND_URL "https://sitright-backend-api.onrender.com/api/v1/readings"
+   #define BACKEND_USE_HTTPS 1
+   ```
+5. Click **▶ Run** — el simulador compila y arranca automáticamente.
+
+**Lo que verás en el Serial Monitor:**
+```
+[SITRIGHT] Iniciando chaleco SitRight...
+[SENSORS] OK: 3x MPU6050 inicializados
+[WIFI] Conectando a Wokwi-GUEST......
+[WIFI] Conectado. IP: 10.10.0.2
+[NET] Enviando: {"vest_id":"vest-wokwi-001","cervical":[...],"battery_percent":85}
+[NET] Respuesta 201: {"id":"...","posture_class":"adequate","confidence":0.91}
+```
+
+Cada 5 segundos el ESP32 simulado envía datos reales al backend en Render.  
+El dashboard en Netlify se actualiza en tiempo real.
+
+## Cómo funciona la red en Wokwi.com
+
+El SSID `Wokwi-GUEST` es la WiFi virtual de Wokwi — provee acceso real a internet  
+a través de los servidores de Wokwi. El ESP32 simulado puede hacer peticiones HTTPS  
+a cualquier URL pública igual que el hardware real.
+
+## Simular localmente con VS Code (opcional)
+
+Ver [`wokwi/README.md`](wokwi/README.md) para instrucciones con la extensión Wokwi.
 
 ## Relación con otros repos
 
-- **sitright-backend-api** — recibe los datos que este firmware envía.
-- **sitright-workspace** — contiene documentación, ADRs y backlog (privado).
+- **sitright-backend-api** — recibe `POST /api/v1/readings` desde este firmware.
+- **sitright-workspace** — documentación, ADRs y backlog (privado).
 
 ## Licencia
 
